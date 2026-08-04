@@ -80,13 +80,16 @@ program
   .option("-d, --details", "Include card details")
   .option("-o, --out <path>", "Output file or directory")
   .option("--headed", "Run the browser with a visible window")
-  .option("--include-acs", "Include the AC's metioned in task description")
+  .option(
+    "--include-acs",
+    "Include the AC's metioned in task description, will also include card details",
+  )
   .action(async (name, options) => {
     const start = performance.now();
     try {
       const outFile = await exportTask(name, {
         details: options.details,
-        out: options.out,
+        out: options.out ?? `${name}.json`,
         headed: options.headed,
         includeAcs: options.includeAcs,
       });
