@@ -2,7 +2,7 @@
 
 const { Command } = require("commander");
 const { login } = require("./lib/auth");
-const { exportBoard } = require("./lib/export");
+const { exportBoard, exportTask } = require("./lib/export");
 const {
   setChromiumPath,
   setProjectId,
@@ -65,6 +65,30 @@ program
         details: options.details,
         out: options.out,
         headed: options.headed,
+      });
+      const s = (performance.now() - start).toFixed(0) / 1000;
+      console.log(`✅ ${outFile} [${s}s]`);
+    } catch (err) {
+      console.error("❌ Export failed:", err.message);
+      process.exit(1);
+    }
+  });
+
+program
+  .command("task <name>")
+  .description("Export a single task by name to JSON")
+  .option("-d, --details", "Include card details")
+  .option("-o, --out <path>", "Output file or directory")
+  .option("--headed", "Run the browser with a visible window")
+  .option("--include-acs", "Include the AC's metioned in task description")
+  .action(async (name, options) => {
+    const start = performance.now();
+    try {
+      const outFile = await exportTask(name, {
+        details: options.details,
+        out: options.out,
+        headed: options.headed,
+        includeAcs: options.includeAcs,
       });
       const s = (performance.now() - start).toFixed(0) / 1000;
       console.log(`✅ ${outFile} [${s}s]`);
