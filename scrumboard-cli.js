@@ -75,21 +75,21 @@ program
   });
 
 program
-  .command("task <name>")
-  .description("Export a single task by name to JSON")
+  .command("task <query>")
+  .description("Export a single task whose name contains <query>")
   .option("-d, --details", "Include card details")
-  .option("-o, --out <path>", "Output file or directory")
+  .option("-o, --out <path>", "Output directory")
   .option("--headed", "Run the browser with a visible window")
   .option(
     "--include-acs",
     "Include the AC's metioned in task description, will also include card details",
   )
-  .action(async (name, options) => {
+  .action(async (query, options) => {
     const start = performance.now();
     try {
-      const outFile = await exportTask(name, {
+      const outFile = await exportTask(query, {
         details: options.details,
-        out: options.out ?? `${name}.json`,
+        out: options.out ?? "./",
         headed: options.headed,
         includeAcs: options.includeAcs,
       });
