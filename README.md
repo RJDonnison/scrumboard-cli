@@ -8,7 +8,7 @@ so it sees exactly what you'd see on the board.
 ## Install
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/ethanelliot/scrumboard-cli/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/RJDonnison/scrumboard-cli/main/install.sh | bash
 ```
 
 This clones the repo to `~/.scrumboard-cli/src`, installs dependencies,
