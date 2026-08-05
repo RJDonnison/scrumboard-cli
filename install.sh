@@ -9,7 +9,7 @@
 # Re-running this script later updates an existing install in place.
 set -euo pipefail
 
-REPO_URL="https://github.com/ethanelliot/scrumboard-cli.git"
+REPO_URL="https://github.com/RJDonnison/scrumboard-cli.git"
 INSTALL_DIR="${SCRUMBOARD_INSTALL_DIR:-$HOME/.scrumboard-cli/src}"
 CONFIG_DIR="${SCRUMBOARD_CONFIG_DIR:-$HOME/.scrumboard-cli}"
 CONFIG_FILE="$CONFIG_DIR/config.json"
