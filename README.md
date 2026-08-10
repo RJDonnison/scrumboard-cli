@@ -8,7 +8,7 @@ so it sees exactly what you'd see on the board.
 ## Install
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/RJDonnison/scrumboard-cli/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/RJDonnison/scrumboard-cli/tasks/install.sh | bash
 ```
 
 This clones the repo to `~/.scrumboard-cli/src`, installs dependencies,
@@ -19,7 +19,7 @@ command onto your PATH. Re-run it any time to update to the latest version.
 <summary>Manual install</summary>
 
 ```sh
-git clone https://github.com/ethanelliot/scrumboard-cli.git
+git clone https://github.com/RJDonnison/scrumboard-cli.git
 cd scrumboard-cli
 npm install
 npm run install-browser   # installs the Chromium build Playwright needs
