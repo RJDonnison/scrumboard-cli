@@ -2,7 +2,7 @@
 
 const { Command } = require("commander");
 const { login } = require("./lib/auth");
-const { exportBoard, exportTask } = require("./lib/export");
+const { exportBoard, exportTask, exportStory } = require("./lib/export");
 const {
   setChromiumPath,
   setProjectId,
@@ -92,6 +92,26 @@ program
         out: options.out ?? "./",
         headed: options.headed,
         includeAcs: options.includeAcs,
+      });
+      const s = (performance.now() - start).toFixed(0) / 1000;
+      console.log(`✅ ${outFile} [${s}s]`);
+    } catch (err) {
+      console.error("❌ Export failed:", err.message);
+      process.exit(1);
+    }
+  });
+
+program
+  .command("story <id>")
+  .description("Export a single story by ID with its ACs")
+  .option("-o, --out <path>", "Output directory")
+  .option("--headed", "Run the browser with a visible window")
+  .action(async (id, options) => {
+    const start = performance.now();
+    try {
+      const outFile = await exportStory(id, {
+        out: options.out ?? "./",
+        headed: options.headed,
       });
       const s = (performance.now() - start).toFixed(0) / 1000;
       console.log(`✅ ${outFile} [${s}s]`);
